@@ -1,15 +1,43 @@
-on: [push]
+name: EdgeGuardian Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  hello_world_job:
+  build:
     runs-on: ubuntu-latest
-    name: A job to say hello
+
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: Chinweoke18/hello-world-javascript-action@v1.1
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Use EdgeGuardian Client Action
+        uses: edgeguardian/actions-client@v1
         with:
-          who-to-greet: 'Mona the Octocat'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+          api_key: ${{ secrets.EDGE_GUARDIAN_API_KEY }}
+          submit_diagnostics_on_failure: 'true'
+          release_channel: 'latest'
+
+      # Add more steps as needed for your workflow after using the EdgeGuardian action
+
+
+# on: [push]
+
+# jobs:
+#   hello_world_job:
+#     runs-on: ubuntu-latest
+#     name: A job to say hello
+#     steps:
+#       - name: Hello world action step
+#         id: hello
+#         uses: Chinweoke18/hello-world-javascript-action@v1.1
+#         with:
+#           who-to-greet: 'Mona the Octocat'
+#       # Use the output from the `hello` step
+#       - name: Get the output time
+#         run: echo "The time was ${{ steps.hello.outputs.time }}"
