@@ -21,6 +21,6 @@ jobs:
         with:
           api_key: ${{ secrets.EDGE_GUARDIAN_API_KEY }}
           # submit_diagnostics_on_failure: 'true'
-          # release_channel: 'latest'
+          release_channel: 'linux'
 
       # Add more steps as needed for your workflow after using the EdgeGuardian action
