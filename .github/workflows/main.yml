@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Use EdgeGuardian Client Action
-        uses: edgeguardian/actions-client@main
+        uses: edgeguardian/actions-client@latest
         with:
           api_key: ${{ secrets.EDGE_GUARDIAN_API_KEY }}
           # submit_diagnostics_on_failure: 'true'
